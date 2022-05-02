@@ -35,6 +35,7 @@ object ServiceLocator {
 
     private val lock = Any()
     private var database: ToDoDatabase? = null
+
     @Volatile
     var tasksRepository: TasksRepository? = null
         @VisibleForTesting set
