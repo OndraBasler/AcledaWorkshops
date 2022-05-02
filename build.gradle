@@ -1,7 +1,6 @@
 buildscript {
     ext.kotlinVersion = '1.6.10'
     ext.navigationVersion = '2.4.1'
-    ext.ktlintVersion = '0.44.0'
     repositories {
         google()
         mavenCentral()
@@ -10,14 +9,11 @@ buildscript {
         classpath 'com.android.tools.build:gradle:7.1.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigationVersion"
+        classpath 'com.google.gms:google-services:4.3.10'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
-}
-
-plugins {
-    id "com.diffplug.spotless" version "5.12.5"
 }
 
 allprojects {
@@ -25,22 +21,14 @@ allprojects {
         google()
         mavenCentral()
     }
-    apply plugin: 'com.diffplug.spotless'
-    spotless {
-        kotlin {
-            target "**/*.kt"
-            targetExclude ".idea/"
-            ktlint(ktlintVersion)
-        }
-    }
 }
 
 // Define versions in a single place
 ext {
     // Sdk and tools
     minSdkVersion = 21
-    targetSdkVersion = 32
-    compileSdkVersion = 32
+    targetSdkVersion = 31
+    compileSdkVersion = 31
 
     // App dependencies
     androidXVersion = '1.0.0'

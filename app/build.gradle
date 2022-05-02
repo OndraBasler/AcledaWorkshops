@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs.kotlin"
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion rootProject.compileSdkVersion
@@ -16,6 +17,18 @@ android {
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
 
+    signingConfigs {
+        release {
+            keyAlias 'showcase'
+            keyPassword 'f3WE8GkUVq2heYvH'
+            storeFile file('../extras/showcase.keystore.jks')
+            storePassword 'f3WE8GkUVq2heYvH'
+        }
+
+        debug {
+        }
+    }
+
     buildTypes {
         debug {
         }
@@ -23,6 +36,7 @@ android {
         release {
             minifyEnabled true
             shrinkResources true
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -81,4 +95,7 @@ dependencies {
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
     implementation "androidx.fragment:fragment-ktx:$fragmentKtxVersion"
+
+    // Firebase
+    implementation platform('com.google.firebase:firebase-bom:29.3.1')
 }

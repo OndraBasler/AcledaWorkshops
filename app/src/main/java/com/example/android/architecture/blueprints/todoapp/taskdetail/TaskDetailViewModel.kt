@@ -16,12 +16,7 @@
 package com.example.android.architecture.blueprints.todoapp.taskdetail
 
 import androidx.annotation.StringRes
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.map
-import androidx.lifecycle.switchMap
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.android.architecture.blueprints.todoapp.Event
 import com.example.android.architecture.blueprints.todoapp.R
 import com.example.android.architecture.blueprints.todoapp.data.Result
@@ -86,12 +81,14 @@ class TaskDetailViewModel(
     }
 
     fun start(taskId: String?) {
+        taskId ?: return
+
         // If we're already loading or already loaded, return (might be a config change)
         if (_dataLoading.value == true || taskId == _taskId.value) {
             return
         }
         // Trigger the load
-        _taskId.value = taskId
+        _taskId.value = taskId!!
     }
 
     private fun computeResult(taskResult: Result<Task>): Task? {
