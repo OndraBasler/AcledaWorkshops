@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
 
 android {
     compileSdkVersion rootProject.compileSdkVersion
@@ -31,13 +32,29 @@ android {
 
     buildTypes {
         debug {
+            manifestPlaceholders = [crashlyticsCollectionEnabled: "false"]
         }
 
         release {
             minifyEnabled true
             shrinkResources true
             signingConfig signingConfigs.release
+            manifestPlaceholders = [crashlyticsCollectionEnabled: "true"]
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    // If you need to add more flavors, consider using flavor dimensions.
+    flavorDimensions "environment"
+    productFlavors {
+        uat {
+            buildConfigField "boolean", "IS_PRODUCTION", "false"
+            dimension "environment"
+            applicationIdSuffix = ".uat"
+        }
+        prod {
+            buildConfigField "boolean", "IS_PRODUCTION", "true"
+            dimension "environment"
         }
     }
 
@@ -98,4 +115,6 @@ dependencies {
 
     // Firebase
     implementation platform('com.google.firebase:firebase-bom:29.3.1')
+    implementation 'com.google.firebase:firebase-crashlytics-ktx'
+    implementation 'com.google.firebase:firebase-analytics-ktx'
 }

@@ -33,6 +33,35 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:961168108929:android:bbd53173c96dc99db10c80",
+        "android_client_info": {
+          "package_name": "com.example.acleda.showcase.uat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "961168108929-7ur0p3f7vf8mulkckj5qef1s7oa92tcf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPDrY6oOhWdljjTNss-FxXyhYSeNlan7Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "961168108929-7ur0p3f7vf8mulkckj5qef1s7oa92tcf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"
