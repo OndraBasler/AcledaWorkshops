@@ -40,7 +40,7 @@ class StatisticsFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         viewDataBinding = DataBindingUtil.inflate(
             inflater, R.layout.statistics_frag, container,
             false
