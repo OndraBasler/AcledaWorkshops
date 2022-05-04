@@ -37,6 +37,7 @@ import com.google.android.material.snackbar.Snackbar
  */
 class AddEditTaskFragment : Fragment() {
 
+    //FIXME - this creates a memory leak!!!
     private lateinit var viewDataBinding: AddtaskFragBinding
 
     private val args: AddEditTaskFragmentArgs by navArgs()

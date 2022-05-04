@@ -43,8 +43,11 @@ class TasksFragment : Fragment() {
 
     private val args: TasksFragmentArgs by navArgs()
 
-    private lateinit var viewDataBinding: TasksFragBinding
+    private var _viewDataBinding: TasksFragBinding? = null
+    private val viewDataBinding: TasksFragBinding
+        get() = _viewDataBinding!!
 
+    //FIXME - memory leak
     private lateinit var listAdapter: TasksAdapter
 
     override fun onCreateView(
@@ -52,11 +55,16 @@ class TasksFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        viewDataBinding = TasksFragBinding.inflate(inflater, container, false).apply {
+        _viewDataBinding = TasksFragBinding.inflate(inflater, container, false).apply {
             viewmodel = viewModel
         }
         setHasOptionsMenu(true)
         return viewDataBinding.root
+    }
+
+    override fun onDestroyView() {
+        _viewDataBinding = null
+        super.onDestroyView()
     }
 
     override fun onOptionsItemSelected(item: MenuItem) =
